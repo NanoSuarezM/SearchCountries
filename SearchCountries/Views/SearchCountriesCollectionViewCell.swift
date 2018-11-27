@@ -25,17 +25,3 @@ class SearchCountriesCollectionViewCell: UICollectionViewCell {
     
 }
 
-// MARK: Accessibility
-extension SearchCountriesCollectionViewCell {
-    func applyAccessibility(_ cellViewModel: SearchCountriesCellViewModel) {
-        countryFlagImageView.isAccessibilityElement = true
-        countryFlagImageView.accessibilityTraits = UIAccessibilityTraits.image
-        countryFlagImageView.accessibilityLabel = "Flag of \(cellViewModel.countryName)"
-        
-        countryNameLabel.isAccessibilityElement = true
-        countryPopulationLabel.isAccessibilityElement = true
-        countryAreaLabel.isAccessibilityElement = true
-        
-    }
-}
-

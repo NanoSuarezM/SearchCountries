@@ -9,7 +9,6 @@
 import XCTest
 @testable import SearchCountries
 
-//MARK: MOCK
 class MockURLSession: URLSessionProtocol {
     
     var nextDataTask = MockURLSessionDataTask()
@@ -77,6 +76,17 @@ class APIServiceTests: XCTestCase {
         XCTAssert(session.lastURL == url)
     }
     
+    func testRequestCountryWithMoreThanTwoWordsByNameWithSameURL() {
+        
+        guard let url = URL(string: "https://restcountries.eu/rest/v2/name/United%20States%20Of%20America") else  {
+            fatalError("URL can't be empty")
+        }
+        
+        sut.fetchCountries(searchText: "United States Of America", searchType: "Name") { (response, error) in
+        }
+        XCTAssert(session.lastURL == url)
+    }
+    
     func testRequestCountryByCapitalWithSameURL() {
         
         guard let url = URL(string: "https://restcountries.eu/rest/v2/capital/Madrid") else  {
@@ -84,12 +94,7 @@ class APIServiceTests: XCTestCase {
         }
         
         sut.fetchCountries(searchText: "Madrid", searchType: "Capital") { (response, error) in
-            // return data
         }
-        //        httpClient.get(url: url) { (success, response) in
-        //            // Return data
-        //        }
-        
         XCTAssert(session.lastURL == url)
     }
     
@@ -100,12 +105,7 @@ class APIServiceTests: XCTestCase {
         }
         
         sut.fetchCountries(searchText: "ES", searchType: "Language") { (response, error) in
-            // return data
         }
-        //        httpClient.get(url: url) { (success, response) in
-        //            // Return data
-        //        }
-        
         XCTAssert(session.lastURL == url)
     }
     
@@ -116,11 +116,7 @@ class APIServiceTests: XCTestCase {
         }
         
         sut.fetchCountries(searchText: "EU", searchType: "Region") { (response, error) in
-            // return data
         }
-        //        httpClient.get(url: url) { (success, response) in
-        //            // Return data
-        //        }
         
         XCTAssert(session.lastURL == url)
     }
@@ -132,11 +128,7 @@ class APIServiceTests: XCTestCase {
         }
         
         sut.fetchCountries(searchText: "EUR", searchType: "Currency") { (response, error) in
-            // return data
         }
-        //        httpClient.get(url: url) { (success, response) in
-        //            // Return data
-        //        }
         
         XCTAssert(session.lastURL == url)
     }
@@ -146,7 +138,6 @@ class APIServiceTests: XCTestCase {
         session.nextDataTask = dataTask
         
         sut.fetchCountries(searchText: nil, searchType: nil) { (response, error) in
-            // return data
         }
         XCTAssert(dataTask.resumeWasCalled)
     }

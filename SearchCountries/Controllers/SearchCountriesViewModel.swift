@@ -12,7 +12,7 @@ import MapKit
 
 final class SearchCountriesViewModel {
     let apiService: APIServiceProtocol
-    let userLocation: UserLocation//UserLocation.sharedInstance
+    let userLocation: UserLocation
     
     private var countries: [Country] = [Country]()
     var countriesUnSortedArray: [Country] = [Country]()
@@ -45,6 +45,8 @@ final class SearchCountriesViewModel {
     var searchText: String?
     var searchType: String?
     
+    //MARK: - Initializers
+    
     init() {
         self.apiService = APIService()
         self.userLocation = UserLocation.sharedInstance
@@ -66,6 +68,12 @@ final class SearchCountriesViewModel {
             } else {
                 self?.alertMessage = "Please Allow the location Service to open this screen. Go to settings"
             }
+        }
+        
+        self.userLocation.showErrorMessage = { [weak self] () in
+                if let error = self?.userLocation.errorMessage {
+                    self?.alertMessage = error
+                }
         }
     }
     
@@ -92,14 +100,6 @@ final class SearchCountriesViewModel {
                     self?.cellviewmodels.removeAll()
                 }
             }
-            //
-            //                switch result {
-            //                case .success(let countries):
-            //                    self?.processCountries(countries: countries)
-            //                case .failure(let error):
-            //                    self?.alertMessage = error.localizedDescription
-            //                    self?.cellviewmodels.removeAll()
-            //                }
         }
     }
     
@@ -113,11 +113,11 @@ final class SearchCountriesViewModel {
             if !country.latitudeLongitude.isEmpty {
                 //Create CLLocation for latitudeLongitude from country object
                 let countryLocation = CLLocation(latitude: country.latitudeLongitude[0], longitude: country.latitudeLongitude[1])
-                //Calculate distance from user location
+                //Calculate distance from user location and set the country distance property
                 country.distance = (self.userLocation.location?.distance(from:countryLocation))!
                 //country.distance = 1000000000.0
             } else {
-                // the latlng from server is empty so we don't know the exact location, we set a distance to put them in the end
+                // the latitudeLongitude from server is empty so we don't know the exact location, we set a distance to put them in the end
                 country.distance = 1000000000.0
             }
             self.countriesUnSortedArray.append(country)
@@ -141,4 +141,3 @@ final class SearchCountriesViewModel {
         return SearchCountriesCellViewModel( countryName: country.name, countryFlag_url: country.flag_url!, countryPopulation: "Population \(String(country.population))", countryArea: "Area \(country.area?.description ?? "0") km2")
     }
 }
-

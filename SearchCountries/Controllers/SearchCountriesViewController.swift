@@ -79,18 +79,17 @@ class SearchCountriesViewController: UIViewController {
     func filterSearchController(_ searchBar: UISearchBar) {
         guard let scopeString = searchBar.scopeButtonTitles?[searchBar.selectedScopeButtonIndex] else { return }
         print(scopeString)
+
         let searchText = searchBar.text?.trimmingCharacters(in: .whitespaces) ?? ""
         
         self.searchCountriesViewModel.initFetch(searchText: searchText, searchType: scopeString)
     }
-    
-    //    func showAlertMessage(message: String) {
-    //        self.collectionView.setMessage(message: message)
-    //    }
 }
 
-extension SearchCountriesViewController: UICollectionViewDataSource, UICollectionViewDelegate {
-    
+//MARK: - UICollectionViewDataSource
+
+extension SearchCountriesViewController: UICollectionViewDataSource {
+        
     func collectionView(_ collectionView: UICollectionView, numberOfItemsInSection section: Int) -> Int {
         if (self.searchCountriesViewModel.numberOfCells > 0) {
             self.collectionView.restore()
@@ -115,6 +114,8 @@ extension SearchCountriesViewController: UICollectionViewDataSource, UICollectio
         return cell
     }
 }
+
+//MARK: - UISearchBarDelegate
 
 extension SearchCountriesViewController: UISearchBarDelegate {
     
@@ -149,6 +150,8 @@ extension SearchCountriesViewController: UISearchBarDelegate {
         }
     }
 }
+
+//MARK: - CollectionView Little Helpers
 
 extension UICollectionView {
     func setMessage(message: String) {

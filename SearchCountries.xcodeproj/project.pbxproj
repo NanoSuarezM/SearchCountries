@@ -121,9 +121,11 @@
 		3E19E095218B555E00D632F5 /* SearchCountries */ = {
 			isa = PBXGroup;
 			children = (
+				3EC8EC45218C696500221913 /* General */,
 				3E19E0B7218B560A00D632F5 /* Model */,
 				3E19E0B6218B55FE00D632F5 /* Controllers */,
-				3E19E0B8218B561200D632F5 /* Service */,
+				3EC8EC46218C768200221913 /* Views */,
+				3E19E0B8218B561200D632F5 /* Services */,
 				3E19E0B9218B562000D632F5 /* Helpers */,
 				3E19E0BA218B563A00D632F5 /* SupportFiles */,
 			);
@@ -146,7 +148,6 @@
 				3E19E0BD218B56EF00D632F5 /* SearchCountriesViewController.swift */,
 				3E19E0BF218B573B00D632F5 /* SearchCountriesViewModel.swift */,
 				3E19E0C1218B576900D632F5 /* SearchCountriesCellViewModel.swift */,
-				3E19E0C5218B57C000D632F5 /* SearchCountriesCollectionViewCell.swift */,
 				3E19E0C3218B578300D632F5 /* UserLocation.swift */,
 			);
 			path = Controllers;
@@ -160,12 +161,12 @@
 			path = Model;
 			sourceTree = "<group>";
 		};
-		3E19E0B8218B561200D632F5 /* Service */ = {
+		3E19E0B8218B561200D632F5 /* Services */ = {
 			isa = PBXGroup;
 			children = (
 				3E19E0C7218B587400D632F5 /* APIService.swift */,
 			);
-			path = Service;
+			path = Services;
 			sourceTree = "<group>";
 		};
 		3E19E0B9218B562000D632F5 /* Helpers */ = {
@@ -180,13 +181,28 @@
 		3E19E0BA218B563A00D632F5 /* SupportFiles */ = {
 			isa = PBXGroup;
 			children = (
-				3E19E096218B555E00D632F5 /* AppDelegate.swift */,
 				3E19E0CD218B599800D632F5 /* content.json */,
 				3E19E09A218B555E00D632F5 /* Main.storyboard */,
 				3E19E09D218B556200D632F5 /* Assets.xcassets */,
 				3E19E09F218B556200D632F5 /* LaunchScreen.storyboard */,
 			);
 			path = SupportFiles;
+			sourceTree = "<group>";
+		};
+		3EC8EC45218C696500221913 /* General */ = {
+			isa = PBXGroup;
+			children = (
+				3E19E096218B555E00D632F5 /* AppDelegate.swift */,
+			);
+			path = General;
+			sourceTree = "<group>";
+		};
+		3EC8EC46218C768200221913 /* Views */ = {
+			isa = PBXGroup;
+			children = (
+				3E19E0C5218B57C000D632F5 /* SearchCountriesCollectionViewCell.swift */,
+			);
+			path = Views;
 			sourceTree = "<group>";
 		};
 		E62E143A5631AF87A1573881 /* Frameworks */ = {

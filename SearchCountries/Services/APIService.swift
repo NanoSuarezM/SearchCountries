@@ -82,7 +82,9 @@ final class APIService: APIServiceProtocol {
     
     func urlStringFrom(searchText: String?, searchType: String?) -> String{
         let endpoints = Endpoints()
-        guard let text = searchText else { return endpoints.allEndpoint}
+        guard let searchText = searchText else { return endpoints.allEndpoint}
+        // in case the search text has more than 1 word we need to put %20 between the words
+        let text = searchText.addingPercentEncoding(withAllowedCharacters: NSCharacterSet.urlQueryAllowed)!
         
         switch searchType {
         case "Name":
@@ -109,9 +111,3 @@ extension URLSession: URLSessionProtocol {
         return (dataTask(with: request, completionHandler: completionHandler) as URLSessionDataTask) as URLSessionDataTaskProtocol
     }
 }
-
-
-
-
-
-
